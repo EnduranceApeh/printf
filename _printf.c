@@ -22,29 +22,26 @@ int _printf(const char *format, ...)
 			_putchar(format[i]);
 			length++;
 		}
-		else
+		format++;
+		if (format[i] == 'c')
 		{
-			format++;
-			if (format[i] == 'c')
+			length++;
+			charac = va_arg(list_of_args, int);
+			_putchar(charac);
+		}
+		if (format[i] == 's')
+		{
+			string = va_arg(list_of_args, char*);
+			for (j = 0; string[j] != '\0'; j++)
 			{
 				length++;
-				charac = va_arg(list_of_args, int);
-				_putchar(charac);
+				_putchar(string[j]);
 			}
-			if (format[i] == 's')
-			{
-				string = va_arg(list_of_args, char*);
-				for (j = 0; string[j] != '\0'; j++)
-				{
-					length++;
-					_putchar(string[j]);
-				}
-			}
-			if (format[i] == '%')
-			{
-				length++;
-				_putchar('%');
-			}
+		}
+		if (format[i] == '%')
+		{
+			length++;
+			_putchar('%');
 		}
 	}
 	va_end(list_of_args);
