@@ -8,7 +8,6 @@ int _printf(const char *format, ...)
 	int i, length = 0, j;
 	char charac;
 	char *string;
-	int num;
 	/* check if format is NULL */
 	if (format == NULL)
 	{
@@ -31,9 +30,9 @@ int _printf(const char *format, ...)
 				charac = va_arg(list_of_args, int);
 				_putchar(charac);
 			}
-			if (formart[i] == 's')
+			if (format[i] == 's')
 			{
-				string = va_arg(list_of_arga, char*);
+				string = va_arg(list_of_args, char*);
 				for (j = 0; string[j] != '\0'; j++)
 				{
 					_putchar(string[j]);
