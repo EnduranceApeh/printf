@@ -44,6 +44,7 @@ int handle_format_specifier(const char **format, va_list args)
 	int length = 0;
 	char charac;
 	char *string;
+	int i;
 
 	if (**format == 'c')
 	{
@@ -54,7 +55,17 @@ int handle_format_specifier(const char **format, va_list args)
 	else if (**format == 's')
 	{
 		string = va_arg(args, char*);
-		length += _print_string(string);
+		for (i = 0; string[i] != '\0'; i++)
+		{
+			_putchar(string[i]);
+			length++;
+		}
 	}
+	else if (**format == '%')
+	{
+		_putchar('%');
+		length++;
+	}
+	(*format)++;
 	return (length);
 }
