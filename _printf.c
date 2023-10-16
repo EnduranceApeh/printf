@@ -1,6 +1,10 @@
 #include "main.h"
 
-
+/**
+ * _printf - a replica of the original printf function
+ * @format: the first argument
+ * Return: Return an integer
+ */
 
 int _printf(const char *format, ...)
 {
@@ -10,9 +14,7 @@ int _printf(const char *format, ...)
 	char *string;
 	/* check if format is NULL */
 	if (format == NULL)
-	{
 		return (-1);
-	}
 	va_start(list_of_args, format);
 	/* Iterate throuh the string to check for format specifiers */
 	for (i = 0; format[i] != '\0'; i++)
@@ -40,9 +42,7 @@ int _printf(const char *format, ...)
 				}
 			}
 			if (format[i] == '%')
-			{
 				_putchar('%');
-			}
 		}
 	}
 	va_end(list_of_args);
