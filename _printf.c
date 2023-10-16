@@ -1,11 +1,9 @@
 #include "main.h"
-
 /**
  * _printf - a replica of the original printf function
  * @format: the first argument
  * Return: Return an integer
  */
-
 int _printf(const char *format, ...)
 {
 	va_list list_of_args;
@@ -29,6 +27,7 @@ int _printf(const char *format, ...)
 			format++;
 			if (format[i] == 'c')
 			{
+				length++;
 				charac = va_arg(list_of_args, int);
 				_putchar(charac);
 			}
@@ -37,12 +36,15 @@ int _printf(const char *format, ...)
 				string = va_arg(list_of_args, char*);
 				for (j = 0; string[j] != '\0'; j++)
 				{
-					_putchar(string[j]);
 					length++;
+					_putchar(string[j]);
 				}
 			}
 			if (format[i] == '%')
+			{
+				length++;
 				_putchar('%');
+			}
 		}
 	}
 	va_end(list_of_args);
