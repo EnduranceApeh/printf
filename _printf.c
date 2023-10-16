@@ -1,51 +1,60 @@
 #include "main.h"
+
 /**
- * _printf - a replica of the original printf function
- * @format: the first argument
- * Return: Return an integer
+ * _printf - A custom printf function that prints to the STDO
+ * @format: a constant character argument
+ * Return: Returns an integer
  */
+
 int _printf(const char *format, ...)
 {
 	va_list list_of_args;
-	int i, length = 0, j;
-	char charac, *string;
-	/* check if format is NULL */
+	int length = 0;
+
 	if (format == NULL)
 		return (-1);
+
 	va_start(list_of_args, format);
-	/* Iterate throuh the string to check for format specifiers */
-	for (i = 0; format[i] != '\0'; i++)
+
+	for (; *format != '\0'; format++)
 	{
-		if (format[i] != '%')
+		if (*format != '%')
 		{
-			_putchar(format[i]);
+			_putchar(*format);
 			length++;
 		}
 		else
 		{
-		format++;
-			if (format[i] == 'c')
-			{
-				length++;
-				charac = va_arg(list_of_args, int);
-				_putchar(charac);
-			}
-			if (format[i] == 's')
-			{
-				string = va_arg(list_of_args, char*);
-				for (j = 0; string[j] != '\0'; j++)
-				{
-					length++;
-					_putchar(string[j]);
-				}
-			}
-			if (format[i] == '%')
-			{
-				length++;
-				_putchar('%');
-			}
+			format++;
+			length += handle_format_specifier(&format, list_of_args);
 		}
 	}
 	va_end(list_of_args);
+	return (length);
+}
+/**
+ * handle_format_specifier - a function that handles the format specifier
+ * @format: pointer to a char pointer
+ * @args: Takes in the va_list number
+ * Return: Returns an integer
+ */
+
+int handle_format_specifier(const char **format, va_list args)
+{
+	int length = 0;
+	char charac;
+	char *string;
+
+	if (**format == 'c')
+	{
+		charac = va_arg(args, int);
+		_putchar(charac);
+		length++;
+	}
+	else if (**format == 's')
+	{
+		string = va_arg(args, char*);
+		length += _print_string(string);
+	}
 	return (length);
 }
