@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			putchar(format[i]);
+			_putchar(format[i]);
 			length++;
 		}
 		else
@@ -29,9 +29,23 @@ int _printf(const char *format, ...)
 			if (format[i] == 'c')
 			{
 				charac = va_arg(list_of_args, int);
-				putchar(charac);
+				_putchar(charac);
+			}
+			if (formart[i] == 's')
+			{
+				string = va_arg(list_of_arga, char*);
+				for (j = 0; string[j] != '\0'; j++)
+				{
+					_putchar(string[j]);
+					length++;
+				}
+			}
+			if (format[i] == '%')
+			{
+				_putchar('%');
 			}
 		}
 	}
+	va_end(list_of_args);
 	return (length);
 }
