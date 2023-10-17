@@ -6,10 +6,10 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list list_of_args;
 	int i, length = 0, j;
 	char charac, *string;
-	/* check if format is NULL */
+	va_list list_of_args;
+
 	if (format == NULL)
 		return (-1);
 	va_start(list_of_args, format);
