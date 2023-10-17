@@ -8,6 +8,4 @@
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int handle_format_specifier(const char **format, va_list args);
-int _print_string(char *str);
 #endif
