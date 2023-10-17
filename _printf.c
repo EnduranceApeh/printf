@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 			if (format[i] == 'd' || format[i] == 'i')
 			{
 				integer = va_arg(list_of_args, int);
-				length = print_integer(integer);
+				length += print_integer(integer);
 			}
 		}
 	}
