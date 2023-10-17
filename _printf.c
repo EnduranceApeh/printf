@@ -47,3 +47,43 @@ int _printf(const char *format, ...)
 	va_end(list_of_args);
 	return (length);
 }
+<<<<<<< HEAD
+=======
+/**
+ * handle_format_specifier - a function that handles the format specifier
+ * @format: pointer to a char pointer
+ * @args: Takes in the va_list number
+ * Return: Returns an integer
+ */
+
+int handle_format_specifier(const char **format, va_list args)
+{
+	int length = 0;
+	char charac;
+	char *string;
+	int i;
+
+	if (**format == 'c')
+	{
+		charac = va_arg(args, int);
+		_putchar(charac);
+		length++;
+	}
+	else if (**format == 's')
+	{
+		string = va_arg(args, char*);
+		for (i = 0; string[i] != '\0'; i++)
+		{
+			_putchar(string[i]);
+			length++;
+		}
+	}
+	else if (**format == '%')
+	{
+		_putchar('%');
+		length++;
+	}
+	(*format)++;
+	return (length);
+}
+>>>>>>> 4db2ac57a4771735555db9879ed14914ef11a231
