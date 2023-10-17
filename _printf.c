@@ -1,46 +1,55 @@
 #include "main.h"
 /**
- * _printf - a printf clone that prints int and strings
- * @format: format identifier
- * Return: an int
+ * _printf - a replica of the original printf function
+ * @format: the first argument
+ * Return: Return an integer
  */
-
 int _printf(const char *format, ...)
 {
-	match m[] = {
-		{"%c", printf_char}, {"%s", printf_string}, {"%%", print_percent},
-		{"%i", print_int}, {"%d", _print_dec}
-	};
-	va_list args;
-	int i = 0, length = 0;
-	int a;
-
-	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-	{
+	va_list list_of_args;
+	int i, length = 0, j, integer;
+	char charac, *string;
+	/* check if format is NULL */
+	if (format == NULL)
 		return (-1);
-	}
-/**create a label to tell the while loop*/
-
-Here:
-	while (format[i] != '\0')
+	va_start(list_of_args, format);
+	/* Iterate throuh the string to check for format specifiers */
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		a = 4;
-		while (a >= 0)
+		if (format[i] != '%')
 		{
-			/** checking for place holders*/
-			if (m[a].id[0] == format[i] && m[a].id[1] == format[i + 1])
-			{
-				length = length + m[a].f(args);
-				i = i + 2;
-				goto Here;
-			}
-			a--;
+			length += _putchar(format[i]);
 		}
-		_putchar(format[i]);
-		i++;
-		length++;
+		else
+		{
+		format++;
+			if (format[i] == 'c')
+			{
+				length++;
+				charac = va_arg(list_of_args, int);
+				_putchar(charac);
+			}
+			if (format[i] == 's')
+			{
+				string = va_arg(list_of_args, char*);
+				for (j = 0; string[j] != '\0'; j++)
+				{
+					length += _putchar(string[j]);
+				}
+			}
+			if (format[i] == '%')
+			{
+				length++;
+				_putchar('%');
+			}
+			if (format[i] == 'd' || format[i] == 'i')
+			{
+				integer = va_arg(list_of_args, int);
+				print_integer(integer);
+				length++;
+			}
+		}
 	}
-	va_end(args);
+	va_end(list_of_args);
 	return (length);
 }
