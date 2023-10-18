@@ -37,10 +37,7 @@ int _printf(const char *format, ...)
 				}
 			}
 			if (format[i] == '%')
-			{
-				length++;
-				_putchar('%');
-			}
+				length += _putchar('%');
 			if (format[i] == 'd' || format[i] == 'i')
 			{
 				integer = va_arg(list_of_args, int);
