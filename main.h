@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+/**The main.h files containing every prototype used*/
+
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
