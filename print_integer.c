@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * print_integer - convert inter to string
+ * print_integer - convert inter to a string
  * @value: store value
- * Return:   print
+ * Return: returns an integer
  */
 
 int print_integer(int value)
