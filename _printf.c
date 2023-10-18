@@ -25,9 +25,8 @@ int _printf(const char *format, ...)
 		format++;
 			if (format[i] == 'c')
 			{
-				length++;
 				charac = va_arg(list_of_args, int);
-				_putchar(charac);
+				length += _putchar(charac);
 			}
 			if (format[i] == 's')
 			{
